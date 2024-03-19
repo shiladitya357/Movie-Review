@@ -1,5 +1,6 @@
 package dev.shiladitya.movies;
 
+import dev.shiladitya.movies.utils.MovieUtils;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,7 +11,7 @@ import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
 import java.util.List;
 
-@Document(collection="movies")
+@Document(collection= MovieUtils.COLL_MOVIES)
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -24,6 +25,5 @@ public class Movie {
     private String poster;
     private List<String> genres;
     private List<String> backdrops;
-//    @DocumentReference
     private List<String> reviewIds;
 }
