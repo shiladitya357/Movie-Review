@@ -1,6 +1,5 @@
 package dev.shiladitya.movies;
 
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,13 +8,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
+import dev.shiladitya.movies.utils.MovieUtils;
+
 @RestController
-@RequestMapping("/api/v1/movies")
+@RequestMapping(MovieUtils.BASE_URI_MOVIES)
 public class MovieController {
 
     @Autowired
@@ -26,8 +25,8 @@ public class MovieController {
         return new ResponseEntity<>(movieService.allMovies(), HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Optional<Movie>> getSingleMovie(@PathVariable ObjectId id) {
-        return new ResponseEntity<>(movieService.singleMovie(id), HttpStatus.OK);
+    @GetMapping("/{imdbId}")
+    public ResponseEntity<Optional<Movie>> getSingleMovie(@PathVariable String imdbId) {
+        return new ResponseEntity<>(movieService.singleMovie(imdbId), HttpStatus.OK);
     }
 }
